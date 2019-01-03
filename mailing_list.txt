@@ -1,0 +1,2 @@
+destination.email@example.com
+second.email@example.com
