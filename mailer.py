@@ -7,12 +7,12 @@ import time
 EMAIL_LIST = []
 
 # Read config file
-with open("./CONFIG", "r") as file:
+with open("config.txt", "r") as file:
     CONFIG = json.loads(file.read())
 file.close()
 
 # Read mailing list and add it to EMAIL_LIST
-with open("./mailing_list.txt", "r") as file:
+with open("mailing_list.txt", "r") as file:
     while True:
         LINE = file.readline()
         if not LINE:

@@ -2,7 +2,7 @@
 
 ## Configuration
 
-First setup the 'CONFIG' file with email address, password, subject and message.
+First setup the *config.txt* file with email address, password, subject and message.
 
 ```text
 {
