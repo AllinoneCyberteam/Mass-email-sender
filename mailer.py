@@ -25,12 +25,26 @@ file.close()
 MESSAGE = "SUBJECT: {} \n\n{}".format(CONFIG["subject"], CONFIG["message"])
 
 # Open SMTP secure connection.
-EMAIL_SERVER = smtplib.SMTP_SSL("smtp.gmail.com", "465")
+try:
+    EMAIL_SERVER = smtplib.SMTP_SSL("smtp.gmail.com", "465")
+except Exception as e:
+    print("Error intializing SMTP server")
+    print(str(e))
+
+
 # Login
-EMAIL_SERVER.login(CONFIG["email"], CONFIG["password"])
+try:
+    EMAIL_SERVER.login(CONFIG["email"], CONFIG["password"])
+except SMTPAuthenticationError as e:
+    print("Error during authentication")
+    print(str(e))
+
 # Send emails to emails in EMAIL_LIST in a loop
 for email in EMAIL_LIST:
-    EMAIL_SERVER.sendmail(CONFIG["email"], email, MESSAGE)
+    try:
+        EMAIL_SERVER.sendmail(CONFIG["email"], email, MESSAGE)
+    except Exception as e:
+        print("Could not send email to " + email)
     time.sleep(0.5)
 
 # Quit SMTP server
